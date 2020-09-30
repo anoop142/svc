@@ -29,7 +29,7 @@ func Compress(filesToEncode []string, crf string) {
 
 		encodeCmd := []string{"-loglevel", "quiet", "-stats", "-y", "-i", "Input/" + f, "-c:v", "libx264", "-preset", "slow", "-crf", crf, "-r", "25", "-x264-params", "ref=6:qpmin=10:qpmax=51:me=umh:bframes=6", "-c:a", "libopus", "-b:a", opusBitrate, "-vbr", "on", "-compression_level", "10", "-frame_duration", "60", "-application", "audio", "-strict", "-2", "Ouput/" + f}
 
-		resize := CheckRes(f)
+		resize := checkRes(f)
 
 		if resize == true {
 			// this downscaling is stupid

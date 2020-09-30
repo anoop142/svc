@@ -23,7 +23,7 @@ func resDialog() bool {
 
 }
 
-func CheckRes(InputFile string) bool {
+func checkRes(InputFile string) bool {
 	var ffprobe = "ffprobe"
 
 	var out bytes.Buffer
