@@ -25,7 +25,7 @@ func ChooseInputFile() []string {
 	for _, file := range files {
 
 		fileList = append(fileList, file.Name())
-		color.Bold.Printf("%v", i)
+		color.Bold.Printf("[%v]", i)
 		fmt.Printf(")")
 		fmt.Printf("%v\n", file.Name())
 		i++
