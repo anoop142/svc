@@ -7,21 +7,16 @@ import (
 	"github.com/gookit/color"
 )
 
-const defaultCRF = "32"
-
 //ChooseCRF displays a dialog to choose CRF value
 func ChooseCRF() string {
-	var opt int
+	crf := 32
 
 	fmt.Println()
-	color.Note.Printf("Choose a compression value between 28 and 35 or empty for default value(%s)\n", defaultCRF)
+	color.Note.Printf("Choose a compression value between 28 and 35 or empty for default value(%v)\n", crf)
 	color.Question.Printf("Compression value(CRF) :")
 
-	fmt.Scanf("%d", &opt)
+	fmt.Scanf("%d", &crf)
 
-	if opt == 0 {
-		return defaultCRF
-	}
-	return strconv.Itoa(opt)
+	return strconv.Itoa(crf)
 
 }
