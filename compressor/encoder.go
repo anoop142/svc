@@ -27,12 +27,18 @@ func Compress(filesToEncode []string, crf string) {
 	}
 	for _, f := range filesToEncode {
 
-		encodeCmd := []string{"-loglevel", "quiet", "-stats", "-y", "-i", "Input/" + f, "-c:v", "libx264", "-preset", "slow", "-crf", crf, "-r", "25", "-x264-params", "ref=6:qpmin=10:qpmax=51:me=umh:bframes=6", "-c:a", "libopus", "-b:a", opusBitrate, "-vbr", "on", "-compression_level", "10", "-frame_duration", "60", "-application", "audio", "-strict", "-2", "Ouput/" + f}
+		mainParams := []string{"-loglevel", "quiet", "-stats", "-y", "-i", "Input/" + f}
+
+		videoParams := []string{"-c:v", "libx264", "-preset", "slow", "-crf", crf, "-r", "25", "-x264-params", "ref=6:qpmin=10:qpmax=51:me=umh:bframes=6"}
+		audioParams := []string{"-c:a", "libopus", "-b:a", opusBitrate, "-vbr", "on", "-compression_level", "10", "-frame_duration", "60", "-application", "audio", "-strict", "-2", "Ouput/" + f}
+
+		encodeCmd := append(mainParams, videoParams...)
+		encodeCmd = append(encodeCmd, audioParams...)
 
 		resize := checkRes(f)
 
 		if resize == true {
-			// this downscaling is stupid
+			// insert downscaling param
 			scaleParams := []string{"-vf", "scale=1280:720"}
 			color.Warn.Println("Rescaling to  720p")
 
