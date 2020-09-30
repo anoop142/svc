@@ -14,7 +14,7 @@ func ChooseCRF() string {
 	var opt int
 
 	fmt.Println()
-	color.Note.Println("Choose a compression value between 28 and 35 or empty for default value(%s)\n", defaultCRF)
+	color.Note.Printf("Choose a compression value between 28 and 35 or empty for default value(%s)\n", defaultCRF)
 	color.Question.Printf("Compression value(CRF) :")
 
 	fmt.Scanf("%d", &opt)
