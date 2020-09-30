@@ -13,8 +13,8 @@ import (
 func resDialog() bool {
 	opt := "Y"
 	fmt.Println()
-	color.Question.Println("Do you want to resize to 720p ")
-	color.Bold.Print("Y / N :")
+	color.Question.Println("Do you want to resize to 720p? ")
+	color.Bold.Print("[Y/n] :")
 	fmt.Scanf("%v", &opt)
 	if opt[0] == 'N' || opt[0] == 'n' {
 		return false
