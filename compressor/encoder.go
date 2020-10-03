@@ -11,8 +11,11 @@ import (
 const opusBitrate = "64k"
 
 // Insert downscaling params
-func insert(slc []string, elements []string, index int) []string {
-	return append(slc[:index], append(elements, slc[index:]...)...)
+func insertScaleParams(encodeCmd []string) []string {
+
+	scaleParams := []string{"-vf", "scale=1280:720"}
+
+	return append(encodeCmd[:6], append(scaleParams, encodeCmd[6:]...)...)
 }
 
 // Compress - main encoding function
@@ -39,11 +42,10 @@ func Compress(filesToEncode []string, crf string) {
 
 		if resize == true {
 			// insert downscaling param
-			scaleParams := []string{"-vf", "scale=1280:720"}
+
 			color.Warn.Println("Rescaling to  720p")
 
-			encodeCmd = append(encodeCmd, "", "")
-			insert(encodeCmd, scaleParams, 6)
+			insertScaleParams(encodeCmd)
 		}
 
 		cmd := exec.Command(ffmpeg, encodeCmd...)
