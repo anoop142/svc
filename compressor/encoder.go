@@ -38,13 +38,9 @@ func Compress(filesToEncode []string, crf string) {
 		encodeCmd := append(mainParams, videoParams...)
 		encodeCmd = append(encodeCmd, audioParams...)
 
-		resize := checkRes(f)
-
-		if resize == true {
+		if checkRes(f) {
 			// insert downscaling param
-
 			color.Warn.Println("Rescaling to  720p")
-
 			insertScaleParams(encodeCmd)
 		}
 

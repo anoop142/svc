@@ -10,15 +10,24 @@ import (
 	"github.com/gookit/color"
 )
 
+var downscaleOption string
+
 func resDialog() bool {
-	opt := "Y"
-	fmt.Println()
-	color.Question.Println("Do you want to resize to 720p? ")
-	color.Bold.Print("[Y/n] :")
-	fmt.Scanf("%v", &opt)
-	if opt[0] == 'N' || opt[0] == 'n' {
+
+	// Initial selection
+	if downscaleOption == "" {
+		fmt.Println()
+		color.Question.Println("Do you want to resize to 720p? ")
+		color.Bold.Print("[Y/n] :")
+		fmt.Scanf("%s", &downscaleOption)
+	}
+
+	if downscaleOption == "N" || downscaleOption == "n" {
 		return false
 	}
+
+	// if downscaleOption is empty make it Y
+	downscaleOption = "Y"
 	return true
 
 }
