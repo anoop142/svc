@@ -40,7 +40,7 @@ func Compress(filesToEncode []string, crf string) {
 
 		if checkRes(f) {
 			// insert downscaling param
-			color.Warn.Println("Rescaling to  720p")
+			color.Warn.Println("Downscaling to  720p")
 			insertScaleParams(encodeCmd)
 		}
 
