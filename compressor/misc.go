@@ -23,7 +23,7 @@ func PrintLogo() {
 	const logo = `
 ======================================
 	  Video Compressor  
-	    ver 2.2
+	    ver 2.5
 	Anoop S 
 ======================================
 `
