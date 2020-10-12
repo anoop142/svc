@@ -9,6 +9,9 @@ It is more like a wrapper .
 
 Originally written for teachers.
 
+FFMPEG for encoding .
+FFPROBE for checking resolution.
+
 ## Features
 * Simple, very little input from user.
 * Encoding using x264 .
