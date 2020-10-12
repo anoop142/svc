@@ -41,7 +41,7 @@ func Compress(filesToEncode []string, crf string) {
 		if checkRes(f) {
 			// insert downscaling param
 			color.Warn.Println("Downscaling to  720p")
-			insertScaleParams(encodeCmd)
+			encodeCmd = insertScaleParams(encodeCmd)
 		}
 
 		cmd := exec.Command(ffmpeg, encodeCmd...)
