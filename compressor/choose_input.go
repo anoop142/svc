@@ -11,6 +11,7 @@ import (
 func ChooseInputFile() []string {
 	var fileList []string
 	var opt int
+
 	files, err := ioutil.ReadDir("Input")
 	check(err)
 
@@ -23,8 +24,7 @@ func ChooseInputFile() []string {
 	for i, file := range files {
 
 		fileList = append(fileList, file.Name())
-		color.Bold.Printf("[%v]", i)
-		fmt.Printf("%v\n", file.Name())
+		fmt.Printf("[%v] %v\n", color.Bold.Render(i), file.Name())
 	}
 
 	// If only one file
@@ -32,8 +32,7 @@ func ChooseInputFile() []string {
 		return fileList
 	}
 
-	color.Bold.Printf("[%v]", len(fileList))
-	fmt.Printf("All")
+	fmt.Printf("\n[%v] All\n", color.Bold.Render(len(fileList)))
 
 	fmt.Println(" ")
 	color.Warn.Println("Choose a input file")
