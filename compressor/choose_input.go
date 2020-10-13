@@ -20,14 +20,11 @@ func ChooseInputFile() []string {
 		WaitFun()
 	}
 
-	i := 0
-
-	for _, file := range files {
+	for i, file := range files {
 
 		fileList = append(fileList, file.Name())
 		color.Bold.Printf("[%v]", i)
 		fmt.Printf("%v\n", file.Name())
-		i++
 	}
 
 	// If only one file
@@ -35,7 +32,7 @@ func ChooseInputFile() []string {
 		return fileList
 	}
 
-	color.Bold.Printf("[%v]", i)
+	color.Bold.Printf("[%v]", len(fileList))
 	fmt.Printf("All")
 
 	fmt.Println(" ")
