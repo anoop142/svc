@@ -39,10 +39,8 @@ func checkRes(InputFile string) bool {
 
 	type Mediastruct struct {
 		Streams []struct {
-			Width        int `json:"width"`
-			Height       int `json:"height"`
-			SideDataList []struct {
-			} `json:"side_data_list"`
+			Width  int `json:"width"`
+			Height int `json:"height"`
 		} `json:"streams"`
 	}
 
