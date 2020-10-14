@@ -15,7 +15,9 @@ func ChooseInputFile() []string {
 	files, err := ioutil.ReadDir("Input")
 	check(err)
 
-	if len(files) == 0 {
+	fileCount := len(files)
+
+	if fileCount == 0 {
 		color.Error.Println("No video files in Input folder")
 		color.Note.Println("Put the video file in Input folder to compress! ")
 		WaitFun()
@@ -28,11 +30,11 @@ func ChooseInputFile() []string {
 	}
 
 	// If only one file
-	if len(fileList) == 1 {
+	if fileCount == 1 {
 		return fileList
 	}
 
-	fmt.Printf("\n[%v] All\n", color.Bold.Render(len(fileList)))
+	fmt.Printf("\n[%v] All\n", color.Bold.Render(fileCount))
 
 	fmt.Println(" ")
 	color.Warn.Println("Choose a input file")
@@ -40,10 +42,10 @@ func ChooseInputFile() []string {
 	for {
 		color.Question.Print("Enter selection number: ")
 		fmt.Scanf("%d", &opt)
-		if opt >= 0 && opt < len(fileList) {
+		if opt >= 0 && opt < fileCount {
 			tmp := []string{fileList[opt]}
 			return tmp
-		} else if opt == len(fileList) {
+		} else if opt == fileCount {
 			// encode all
 			return fileList
 
