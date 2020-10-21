@@ -8,7 +8,7 @@ import (
 	"github.com/gookit/color"
 )
 
-const opusBitrate = "64k"
+const opusBitrate = "72k"
 
 // Compress - main encoding function
 func Compress(filesToEncode []string, crf string) {
