@@ -13,13 +13,17 @@ const opusBitrate = "64k"
 // Compress - main encoding function
 func Compress(filesToEncode []string, crf string) {
 
-	ffmpeg := "ffmpeg"
-	clearCmd := "clear"
+	var clearCmd string
+	var ffmpeg string
 
 	if runtime.GOOS == "windows" {
 		clearCmd = "cls"
 		ffmpeg = "bin/ffmpeg.exe"
+	} else {
+		ffmpeg = "ffmpeg"
+		clearCmd = "clear"
 	}
+
 	for _, f := range filesToEncode {
 
 		mainParams := []string{"-loglevel", "quiet", "-stats", "-y", "-i", "Input/" + f}

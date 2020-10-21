@@ -33,7 +33,14 @@ func resDialog() bool {
 }
 
 func checkRes(InputFile string) bool {
-	var ffprobe = "ffprobe"
+
+	var ffprobe string
+
+	if runtime.GOOS == "windows" {
+		ffprobe = "bin/ffprobe.exe"
+	} else {
+		ffprobe = "ffprobe"
+	}
 
 	var out bytes.Buffer
 
@@ -46,9 +53,6 @@ func checkRes(InputFile string) bool {
 
 	var MediaInfo Mediastruct
 
-	if runtime.GOOS == "windows" {
-		ffprobe = "bin/ffprobe.exe"
-	}
 	cmd := exec.Command(ffprobe, "-v", "error", "-select_streams", "v:0", "-show_entries", "stream=width,height", "-of", "json", "Input/"+InputFile)
 	cmd.Stdout = &out
 
