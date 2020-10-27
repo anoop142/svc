@@ -30,8 +30,8 @@ func Compress(filesToEncode []string, crf string) {
 
 		if checkRes(f) {
 			// insert downscaling param
-			color.Warn.Println("Downscaling to  720p")
-			mainParams = append(mainParams, "-vf", "scale=1280:720")
+			color.Warn.Println("Downscaling to  1080p")
+			mainParams = append(mainParams, "-vf", "scale=1920:1080")
 		}
 
 		videoParams := []string{"-c:v", "libx264", "-preset", "slow", "-crf", crf, "-r", "25", "-x264-params", "ref=6:qpmin=10:qpmax=51:me=umh:bframes=6"}

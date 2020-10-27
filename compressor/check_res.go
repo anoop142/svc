@@ -62,7 +62,7 @@ func checkRes(InputFile string) bool {
 	err = json.Unmarshal(out.Bytes(), &MediaInfo)
 	check(err)
 	for _, i := range MediaInfo.Streams {
-		if i.Height > 720 && i.Width > 1280 {
+		if i.Height > 1080 && i.Width > 1920 {
 			return resDialog()
 		}
 	}
