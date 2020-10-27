@@ -15,6 +15,7 @@ func Compress(filesToEncode []string, crf string) {
 
 	var clearCmd string
 	var ffmpeg string
+	var tune = "stillimage"
 
 	if runtime.GOOS == "windows" {
 		clearCmd = "cls"
@@ -23,18 +24,20 @@ func Compress(filesToEncode []string, crf string) {
 		ffmpeg = "ffmpeg"
 		clearCmd = "clear"
 	}
+	screenRecord := IsScreenRecord()
 
 	for _, f := range filesToEncode {
 
 		mainParams := []string{"-loglevel", "quiet", "-stats", "-y", "-i", "Input/" + f}
 
-		if checkRes(f) {
-			// insert downscaling param
-			color.Warn.Println("Downscaling to  1080p")
-			mainParams = append(mainParams, "-vf", "scale=1920:1080")
+		if !screenRecord && checkRes(f) {
+			// Shot on Camera, not a screen record
+			color.Warn.Println("Downscaling to  720p")
+			mainParams = append(mainParams, "-vf", "scale=1280:720")
+			tune = "film"
 		}
 
-		videoParams := []string{"-c:v", "libx264", "-preset", "slow", "-crf", crf, "-r", "25", "-x264-params", "ref=6:qpmin=10:qpmax=51:me=umh:bframes=6"}
+		videoParams := []string{"-c:v", "libx264", "-preset", "slow", "-tune", tune, "-crf", crf, "-r", "25", "-x264-params", "ref=6:qpmin=10:qpmax=51:me=umh:bframes=6"}
 		audioParams := []string{"-c:a", "libopus", "-b:a", opusBitrate, "-vbr", "on", "-compression_level", "10", "-frame_duration", "60", "-application", "audio", "-strict", "-2", "Ouput/" + f}
 
 		encodeCmd := append(mainParams, videoParams...)

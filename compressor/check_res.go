@@ -17,7 +17,7 @@ func resDialog() bool {
 	// Initial selection
 	if downscaleOption == "" {
 		fmt.Println()
-		color.Question.Println("Do you want to resize to 1080p? ")
+		color.Question.Println("Do you want to resize to 720p? ")
 		color.Bold.Print("[Y/n] :")
 		fmt.Scanf("%s", &downscaleOption)
 	}
@@ -62,10 +62,25 @@ func checkRes(InputFile string) bool {
 	err = json.Unmarshal(out.Bytes(), &MediaInfo)
 	check(err)
 	for _, i := range MediaInfo.Streams {
-		if i.Height > 1080 && i.Width > 1920 {
+		if i.Height > 720 && i.Width > 1280 {
 			return resDialog()
 		}
 	}
 	return false
 
+}
+
+// IsScreenRecord asks the user if the source video is screen record
+func IsScreenRecord() bool {
+	opt := "N"
+	fmt.Println()
+
+	color.Question.Println("Is source a screen recording?")
+	color.Bold.Print("[y/N] :")
+
+	fmt.Scanf("%s", &opt)
+	if opt == "Y" || opt == "y" {
+		return true
+	}
+	return false
 }
