@@ -21,7 +21,7 @@ FFPROBE for checking resolution.
 video playback in android devices.
 * Default optimised for screen reordings.
 * Batch mode.
-* Auto 720p downscaling option.
+* Auto 1080p downscaling option.
 * Audio compression using opus.
 
 ## Usage
