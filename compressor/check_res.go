@@ -17,7 +17,7 @@ func resDialog() bool {
 	// Initial selection
 	if downscaleOption == "" {
 		fmt.Println()
-		color.Question.Println("Do you want to resize to 720p? ")
+		color.Question.Println("Do you want to resize to 1080p? ")
 		color.Bold.Print("[Y/n] :")
 		fmt.Scanf("%s", &downscaleOption)
 	}
