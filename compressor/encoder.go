@@ -30,11 +30,14 @@ func Compress(filesToEncode []string, crf string) {
 
 		mainParams := []string{"-loglevel", "quiet", "-stats", "-y", "-i", "Input/" + f}
 
-		if !screenRecord && checkRes(f) {
+		if !screenRecord {
 			// Shot on Camera, not a screen record
-			color.Warn.Println("Downscaling to  720p")
-			mainParams = append(mainParams, "-vf", "scale=1280:720")
 			tune = "film"
+
+			if checkRes(f) {
+				color.Warn.Println("Downscaling to  720p")
+				mainParams = append(mainParams, "-vf", "scale=1280:720")
+			}
 		}
 
 		videoParams := []string{"-c:v", "libx264", "-preset", "slow", "-tune", tune, "-crf", crf, "-r", "25", "-x264-params", "ref=6:qpmin=10:qpmax=51:me=umh:bframes=6"}
