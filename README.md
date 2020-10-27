@@ -17,11 +17,12 @@ FFPROBE for checking resolution.
 * Encoding using x264 .
 * Web compatible output.
 * CRF based encoding, hence faster than 2-pass and better qulaity than single pass.
+* Optimised encoding  depending on the source.
 * Maximum reduction in file size without breaking 
 video playback in android devices.
 * Default optimised for screen reordings.
+* Auto 720p downscale option.
 * Batch mode.
-* Auto 1080p downscaling option.
 * Audio compression using opus.
 
 ## Usage
