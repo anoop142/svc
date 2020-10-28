@@ -10,7 +10,7 @@ It is more like a wrapper .
 Originally written for teachers.
 
 FFMPEG for encoding .
-FFPROBE for checking resolution.
+Mediainfo for checking resolution.
 
 ## Features
 * Simple, very little input from user.
@@ -25,10 +25,15 @@ video playback in android devices.
 * Batch mode.
 * Audio compression using opus.
 
+## Requirements
+ffmpeg
+
+mediainfo
+
 ## Usage
 
 1. place video files to compress in Input folder
 2. run compressor & choose crf value
 3. done
 
-For Windows  put ffmpeg  and ffprobe binaries in bin folder.
+For Windows  put ffmpeg  and mediainfo binaries in bin folder.
