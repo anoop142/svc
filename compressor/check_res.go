@@ -1,8 +1,6 @@
 package compressor
 
 import (
-	"bytes"
-	"encoding/json"
 	"fmt"
 	"os/exec"
 	"runtime"
@@ -32,39 +30,29 @@ func resDialog() bool {
 
 }
 
+// checkRes checks if the video is higher than specified res dWidth x dHeight.
 func checkRes(InputFile string) bool {
 
-	var ffprobe string
+	var mediainfo string
+	var width int64
+	var height int64
+	const (
+		dWidth  = 1280
+		dHeight = 720
+	)
 
 	if runtime.GOOS == "windows" {
-		ffprobe = "bin/ffprobe.exe"
+		mediainfo = "bin/mediainfo.exe"
 	} else {
-		ffprobe = "ffprobe"
+		mediainfo = "mediainfo"
 	}
 
-	var out bytes.Buffer
-
-	type Mediastruct struct {
-		Streams []struct {
-			Width  int `json:"width"`
-			Height int `json:"height"`
-		} `json:"streams"`
-	}
-
-	var MediaInfo Mediastruct
-
-	cmd := exec.Command(ffprobe, "-v", "error", "-select_streams", "v:0", "-show_entries", "stream=width,height", "-of", "json", "Input/"+InputFile)
-	cmd.Stdout = &out
-
-	err := cmd.Run()
+	out, err := exec.Command(mediainfo, `--Inform=Video;%Width%x%Height%`, "Input/"+InputFile).Output()
 	check(err)
+	fmt.Sscanf(string(out), "%vx%v", &width, &height)
 
-	err = json.Unmarshal(out.Bytes(), &MediaInfo)
-	check(err)
-	for _, i := range MediaInfo.Streams {
-		if i.Height > 720 && i.Width > 1280 {
-			return resDialog()
-		}
+	if width > dWidth && height > dHeight {
+		return resDialog()
 	}
 	return false
 
