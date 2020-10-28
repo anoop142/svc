@@ -72,15 +72,15 @@ func checkRes(InputFile string) bool {
 
 // IsScreenRecord asks the user if the source video is screen record
 func IsScreenRecord() bool {
-	opt := "N"
+	opt := "Y"
 	fmt.Println()
 
 	color.Question.Println("Is source a screen recording?")
-	color.Bold.Print("[y/N] :")
+	color.Bold.Print("[Y/n] :")
 
 	fmt.Scanf("%s", &opt)
-	if opt == "Y" || opt == "y" {
-		return true
+	if opt == "N" || opt == "n" {
+		return false
 	}
-	return false
+	return true
 }
