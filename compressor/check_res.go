@@ -15,9 +15,9 @@ func resDialog() bool {
 	// Initial selection
 	if downscaleOption == "" {
 		fmt.Println()
-		color.Question.Println("Do you want to resize to 720p? ")
-		color.Bold.Print("[Y/n] :")
-		fmt.Scanf("%s", &downscaleOption)
+		color.Question.Printf("Do you want to resize to 720p?\n")
+		color.Bold.Printf("[Y/n] :")
+		fmt.Scanf("%s\n", &downscaleOption)
 	}
 
 	if downscaleOption == "N" || downscaleOption == "n" {
@@ -63,10 +63,10 @@ func IsScreenRecord() bool {
 	opt := "Y"
 	fmt.Println()
 
-	color.Question.Println("Is source a screen recording?")
-	color.Bold.Print("[Y/n] :")
+	color.Question.Printf("Is source a screen recording?\n")
+	color.Bold.Printf("[Y/n] :")
 
-	fmt.Scanf("%s", &opt)
+	fmt.Scanf("%s\n", &opt)
 	if opt == "N" || opt == "n" {
 		return false
 	}

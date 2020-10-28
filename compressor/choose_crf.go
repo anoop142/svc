@@ -14,6 +14,6 @@ func ChooseCRF() string {
 	color.Note.Printf("Choose a CRF value between 28 and 35 or empty for default value(%v)\n", crf)
 	color.Question.Printf("CRF value :")
 
-	fmt.Scanf("%s", &crf)
+	fmt.Scanf("%s\n", &crf)
 	return crf
 }
