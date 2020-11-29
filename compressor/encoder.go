@@ -28,7 +28,7 @@ func Compress(filesToEncode []string, crf string) {
 
 	for _, f := range filesToEncode {
 
-		mainParams := []string{"-loglevel", "quiet", "-stats", "-y", "-i", "Input/" + f}
+		mainParams := []string{"-loglevel", "quiet", "-stats", "-y", "-i", "Input/" + f, "-pix_fmt", "yuv420p"}
 
 		if !screenRecord {
 			// Shot on Camera, not a screen record
