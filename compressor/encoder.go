@@ -28,7 +28,7 @@ func Compress(filesToEncode []string, crf string) {
 	screenRecord := IsScreenRecord()
 
 	for _, inputFile := range filesToEncode {
-		var outputFile string
+		outputFile := inputFile
 
 		// Default to mkv if not either of these extensions
 		if (strings.HasSuffix(inputFile, ".mp4") || strings.HasSuffix(inputFile, ".mkv")) == false {
@@ -36,7 +36,6 @@ func Compress(filesToEncode []string, crf string) {
 			ext := fileName[len(fileName)-1]
 			outputFile = strings.TrimSuffix(inputFile, ext) + "mkv"
 		}
-
 		mainParams := []string{"-loglevel", "quiet", "-stats", "-y", "-i", "Input/" + inputFile, "-pix_fmt", "yuv420p"}
 
 		if !screenRecord {
