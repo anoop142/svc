@@ -30,7 +30,7 @@ func PrintLogo() {
 	/ __|___ _ __  _ __ _ _ ___ _________ _ _
 	|(__/ _ \ '  \| '_ \ '_/ -_|_-<_-< _ \ '_|
 	\___\___/_|_|_| .__/_| \___/__/__|___/_|                  
-	     Anoop S, EEE MACE,  ver 3.6
+	     Anoop S, EEE MACE,  ver 3.8
  `
 
 	fmt.Println(logo)
