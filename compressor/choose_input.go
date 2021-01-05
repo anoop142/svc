@@ -10,12 +10,14 @@ import (
 // ChooseInputFile list all files and takes int input
 func ChooseInputFile() []string {
 	var fileList []string
-	var opt int
 
 	files, err := ioutil.ReadDir("Input")
 	check(err)
 
 	fileCount := len(files)
+
+	// default to batch mode
+	opt := fileCount
 
 	if fileCount == 0 {
 		color.Error.Println("No video files in Input folder")
