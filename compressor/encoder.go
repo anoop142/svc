@@ -57,7 +57,7 @@ func Compress(filesToEncode []string, crf string) {
 		cmd.Stderr = os.Stderr
 		cmd.Stdout = os.Stdout
 
-		color.Info.Println("Compressing ", inputFile)
+		color.Blue.Println("Compressing ", inputFile)
 
 		err := cmd.Run()
 
