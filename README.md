@@ -5,7 +5,7 @@
 A super simple video compressor using FFMPEG 
 optimised for compressing online class / screen recordings.
 
-It is more like a wrapper .
+Just a ffmpeg wrapper.
 
 Originally written for teachers.
 
