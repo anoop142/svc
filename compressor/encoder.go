@@ -9,8 +9,6 @@ import (
 	"github.com/gookit/color"
 )
 
-const opusBitrate = "72k"
-
 // Compress - main encoding function
 func Compress(filesToEncode []string, crf string) {
 
@@ -20,7 +18,7 @@ func Compress(filesToEncode []string, crf string) {
 
 	if runtime.GOOS == "windows" {
 		clearCmd = "cls"
-		ffmpeg = "bin/ffmpeg.exe"
+		ffmpeg = ffmpegWin
 	} else {
 		ffmpeg = "ffmpeg"
 		clearCmd = "clear"
@@ -48,7 +46,7 @@ func Compress(filesToEncode []string, crf string) {
 			}
 		}
 
-		videoParams := []string{"-c:v", "libx264", "-preset", "slow", "-tune", tune, "-crf", crf, "-r", "25", "-x264-params", "ref=6:qpmin=10:qpmax=51:me=umh:bframes=6"}
+		videoParams := []string{"-c:v", "libx264", "-preset", x264Preset, "-tune", tune, "-crf", crf, "-r", fps, "-x264-params", x264Params}
 		audioParams := []string{"-c:a", "libopus", "-b:a", opusBitrate, "-vbr", "on", "-compression_level", "10", "-frame_duration", "60", "-application", "audio", "-strict", "-2", "Ouput/" + outputFile}
 
 		encodeCmd := append(mainParams, videoParams...)
