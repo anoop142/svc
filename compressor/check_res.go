@@ -42,7 +42,7 @@ func checkRes(InputFile string) bool {
 	)
 
 	if runtime.GOOS == "windows" {
-		mediainfo = ffmpegWin
+		mediainfo = mediainfoWin
 	} else {
 		mediainfo = "mediainfo"
 	}
