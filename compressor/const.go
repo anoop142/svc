@@ -1,6 +1,8 @@
 package compressor
 
 const (
+	InputDir     = "Input/"
+	OutputDir    = "Output/"
 	defaultCRF   = "32"
 	opusBitrate  = "72k"
 	ffmpegWin    = "bin/ffmpeg.exe"

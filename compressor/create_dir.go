@@ -6,9 +6,9 @@ import "os"
 func CreateDir() {
 	var err error
 
-	err = os.MkdirAll("Input", 0777)
+	err = os.MkdirAll(InputDir, 0777)
 	check(err)
 
-	err = os.MkdirAll("Ouput", 0777)
+	err = os.MkdirAll(OutputDir, 0777)
 	check(err)
 }

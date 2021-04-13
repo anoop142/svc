@@ -34,7 +34,7 @@ func Compress(filesToEncode []string, crf string) {
 			ext := fileName[len(fileName)-1]
 			outputFile = strings.TrimSuffix(inputFile, ext) + "mkv"
 		}
-		mainParams := []string{"-loglevel", "quiet", "-stats", "-y", "-i", "Input/" + inputFile, "-pix_fmt", "yuv420p"}
+		mainParams := []string{"-loglevel", "quiet", "-stats", "-y", "-i", InputDir + inputFile, "-pix_fmt", "yuv420p"}
 
 		if !screenRecord {
 			// Shot on Camera, not a screen record
@@ -47,7 +47,7 @@ func Compress(filesToEncode []string, crf string) {
 		}
 
 		videoParams := []string{"-c:v", "libx264", "-preset", x264Preset, "-tune", tune, "-crf", crf, "-r", fps, "-x264-params", x264Params}
-		audioParams := []string{"-c:a", "libopus", "-b:a", opusBitrate, "-vbr", "on", "-compression_level", "10", "-frame_duration", "60", "-application", "audio", "-strict", "-2", "Ouput/" + outputFile}
+		audioParams := []string{"-c:a", "libopus", "-b:a", opusBitrate, "-vbr", "on", "-compression_level", "10", "-frame_duration", "60", "-application", "audio", "-strict", "-2", OutputDir + outputFile}
 
 		encodeCmd := append(mainParams, videoParams...)
 		encodeCmd = append(encodeCmd, audioParams...)
